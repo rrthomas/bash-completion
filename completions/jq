@@ -34,8 +34,15 @@ _jq()
                 ;;
         esac
 
+    # jq's --help only shows some of its command-line options; some are not
+    # even listed in the man page!
     if [[ $cur == -* ]]; then
-        COMPREPLY=($(compgen -W '$(_parse_help "$1")' -- "$cur"))
+        COMPREPLY=($(compgen -W '--version --seq --stream --slurp --raw-input
+            --null-input --compact-input --tab --indent --color-output
+            --monochrome-output --ascii-output --unbuffered --sort-keys
+            --raw-output --join-output --from-file --exit-status
+            --arg --argjson --slurpfile --rawfile --argfile --args --jsonargs
+            --run-tests --help --version' -- "$cur"))
         return
     fi
 
